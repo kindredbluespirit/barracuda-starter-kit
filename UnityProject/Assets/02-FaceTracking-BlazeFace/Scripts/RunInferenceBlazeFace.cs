@@ -91,7 +91,8 @@ public sealed class RunInferenceBlazeFace : MonoBehaviour
             webglWarning.SetActive(true);
         #endif
         
-        _webcam = new WebCamTexture(_deviceName, _resolution.x, _resolution.y);
+        // _webcam = new WebCamTexture(_deviceName, _resolution.x, _resolution.y);
+        _webcam = new WebCamTexture(_deviceName);
         _buffer = new RenderTexture(_resolution.x, _resolution.y, 0);
         _webcam.requestedFPS = 30;
         _webcam.Play();
@@ -138,6 +139,7 @@ public sealed class RunInferenceBlazeFace : MonoBehaviour
     {
         List<string> options = new List<string> ();
         foreach (var option in WebCamTexture.devices) {
+            Debug.Log(option.name);
             options.Add(option.name); 
         }
         _cameraDropdown.ClearOptions ();
